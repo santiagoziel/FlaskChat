@@ -3,10 +3,13 @@ from flask_socketio import SocketIO, emit, join_room, leave_room
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+
 db = SQLAlchemy(app)
+socketio = SocketIO(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -20,23 +23,15 @@ class User(db.Model):
 def handle_my_custom_event():
     print(f'user has connected with sid {request.sid}')
 
+@socketio.on('client_disconnecting')
+def disconnect_details(data):
+    #print(f'{data['username']} user disconnected.')
+    print(f'user disconnected. {data}')
+
 @socketio.on('new message')
 def handle_message(data):
     emit('incoming message', {'message' :data['message']})
 
-@socketio.on('join')
-def on_join(data):
-    username = data['username']
-    room = data['room']
-    join_room(room)
-    send(username + ' has entered the room.', to=room)
-
-@socketio.on('leave')
-def on_leave(data):
-    username = data['username']
-    room = data['room']
-    leave_room(room)
-    send(username + ' has left the room.', to=room)
 
 @app.route('/', methods = ['GET', 'POST'])
 def log_in():

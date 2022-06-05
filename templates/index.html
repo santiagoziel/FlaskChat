@@ -4,19 +4,23 @@
     <meta charset="utf-8">
     <title>chat app</title>
   </head>
-  <body>
+  <body onbeforeunload="return Triger_disconect()">
     <h2>Chat app</h2>
     Mensaje: <input type="text" id="myText">
     <button onclick="SendToServer()">Try it</button>
+    <button onclick="Triger_disconect()" type="button" name="button">Disconect</button>
     <ul id = "chatView"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script type="text/javascript" charset="utf-8">
         var socket = io('http://127.0.0.1:5000');
-        socket.on('connect', function() {
-            socket.emit('my event', {data: 'I\'m connected!'});
-            console.log("conected");
-        });
+        // socket.on('connect', function() {
+        //     console.log("conected");
+        // });
+
+        function Triger_disconect() {
+          socket.emit('client_disconnecting', 'bye');
+        }
 
         function SendToServer() {
           	socket.emit('new message',{message: document.getElementById("myText").value});
