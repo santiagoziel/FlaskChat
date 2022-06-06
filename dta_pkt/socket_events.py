@@ -11,6 +11,10 @@ def disconnect_details(data):
     #print(f'{data['username']} user disconnected.')
     print(f'user disconnected. {data}')
 
+@socketio.on('new user')
+def registerUser(data):
+    print(f"ususario bajo nombre de {data['nombre']}")
+
 @socketio.on('new message')
 def handle_message(data):
     emit('incoming message', {'message' :data['message']})

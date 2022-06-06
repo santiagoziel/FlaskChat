@@ -10,6 +10,8 @@ flask = "*"
 flask-socketio = "*"
 simple-websocket = "*"
 flask-sqlalchemy = "*"
+flask-wtf = "*"
+wtforms = "*"
 
 [requires]
 python_version = "3.9"

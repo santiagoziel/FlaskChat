@@ -11,13 +11,15 @@
       <div class="title">
         <h1>The Chat App</h1>
       </div>
+      <form method="post" action="">
+        {{form.hidden_tag()}}
       <div class="form-group mt-5 align-middle">
-          <input type="text" class="form-control" placeholder="Enter your username" id="user-name-field">
+          {{form.username(class="form-control")}}
       </div>
       <div class="form-group align-middle">
-          <button  class="btn form-control btn-info" placeholder="Enter your username" id="user-name-submit">Enter</button>
+          {{form.submit(class="btn form-control btn-info")}}
       </div>
+      </form>
     </div>
-    <script src="./static/login.js"></script>
   </body>
 </html>
