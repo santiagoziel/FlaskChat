@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>chat app</title>
+  </head>
+  <body onbeforeunload="return Triger_disconect()">
+    <h2>Chat app</h2>
+    Mensaje: <input type="text" id="myText">
+    <button onclick="SendToServer()">Try it</button>
+    <button onclick="Triger_disconect()" type="button" name="button">Disconect</button>
+    <ul id = "chatView"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="./static/chat.js"></script>
+  </body>
+</html>
