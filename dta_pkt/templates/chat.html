@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/static/chat.css"/>
     <title>chat app de {{user.username}}</title>
   </head>
-  <body onbeforeunload="return Triger_disconect()">
+  <body onbeforeunload="return socket.emit('client_disconnecting', 'bye')">
     <div class="column left" style="background-color:#aaa;">
       <h2>En linea</h2>
       <ul id = "connected_users">

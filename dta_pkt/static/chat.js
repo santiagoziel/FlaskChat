@@ -28,4 +28,5 @@ socket.on('incoming message', function(data){
 function Triger_disconect() {
   // TODO: send client room number so server knows its gone
   socket.emit('client_disconnecting', 'bye');
+  window.location.replace("/");
 }
