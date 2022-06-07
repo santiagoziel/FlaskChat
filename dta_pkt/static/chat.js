@@ -2,9 +2,9 @@ var socket = io('http://127.0.0.1:5000');
 //when new user conects it updates list of abailable users
 socket.on('new active user', function(message){
   // TODO: make this update abailable user list
-  var ul = document.getElementById("chatView");
+  var ul = document.getElementById("connected_users");
   var li = document.createElement("li");
-  li.appendChild(document.createTextNode(message + " se conecto"));
+  li.appendChild(document.createTextNode(message));
   ul.appendChild(li);
 });
 

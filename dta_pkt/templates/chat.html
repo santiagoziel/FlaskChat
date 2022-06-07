@@ -8,7 +8,7 @@
   <body onbeforeunload="return Triger_disconect()">
     <div class="column left" style="background-color:#aaa;">
       <h2>En linea</h2>
-      <ul>
+      <ul id = "connected_users">
         {% for usuario in users %}
           <li>{{usuario.username}}</li>
         {% endfor %}
