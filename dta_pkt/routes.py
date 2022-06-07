@@ -29,7 +29,16 @@ def log_in():
         return redirect(url_for("chat"))
     return render_template('index.html', form = form)
 
+@app.route('/available', methods = ['GET', 'POST'])
+@login_required
+def available():
+    #gets all conected users exept self
+    users = User.query.filter(User.room != "", User.id != current_user.id).all()
+    return users
+
 @app.route('/chat', methods = ['GET', 'POST'])
 @login_required
 def chat():
-    return render_template('chat.html', user = current_user)
+    #gets all conected users exept self
+    users = User.query.filter(User.room != "", User.id != current_user.id).all()
+    return render_template('chat.html', user = current_user, users = users)
