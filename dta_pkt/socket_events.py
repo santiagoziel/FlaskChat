@@ -1,14 +1,20 @@
 from flask import request
 from flask_socketio import emit, join_room, leave_room
-from dta_pkt import socketio
+
+from dta_pkt import socketio, db
+from dta_pkt.routes import current_user
+from dta_pkt.models import User
 
 @socketio.on('connect')
-def handle_my_custom_event():
-    print(f'user has connected with sid {request.sid}')
+def user_conecting():
+    current_user.room = request.sid
+    db.session.commit()
+    print(f'{current_user.username} has connected with sid {request.sid}')
 
 @socketio.on('client_disconnecting')
 def disconnect_details(data):
-    #print(f'{data['username']} user disconnected.')
+    current_user.room = ""
+    db.session.commit()
     print(f'user disconnected. {data}')
 
 @socketio.on('new user')

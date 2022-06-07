@@ -12,6 +12,7 @@ simple-websocket = "*"
 flask-sqlalchemy = "*"
 flask-wtf = "*"
 wtforms = "*"
+flask-login = "*"
 
 [requires]
 python_version = "3.9"

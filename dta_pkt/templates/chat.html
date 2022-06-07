@@ -2,10 +2,10 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>chat app</title>
+    <title>chat app de {{user.username}}</title>
   </head>
   <body onbeforeunload="return Triger_disconect()">
-    <h2>Chat app de {{username}}</h2>
+    <h2>Chat app de {{user.username}}</h2>
     Mensaje: <input type="text" id="myText">
     <button onclick="SendToServer()">Try it</button>
     <button onclick="Triger_disconect()" type="button" name="button">Disconect</button>
