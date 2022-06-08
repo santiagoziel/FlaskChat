@@ -24,4 +24,4 @@ def handle_message(data):
 def disconnect_details(data):
     current_user.room = ""
     db.session.commit()
-    print(f'user disconnected. {data}')
+    emit('remove active user', current_user.username, broadcast=True)

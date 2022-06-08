@@ -31,3 +31,8 @@ function Triger_disconect() {
   socket.emit('client_disconnecting', 'bye');
   window.location.replace("/");
 }
+
+socket.on('remove active user', function(data){
+  var li = document.getElementById(data);
+  li.remove()
+});
