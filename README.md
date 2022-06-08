@@ -4,8 +4,7 @@ Simple chat application to work as a proof of concept for socketIO
 
 ## TODO
 - [x] improve connected users system to remove need for refresh
-- [ ] get list of connected users to contain info of room they are in
-- [ ] join user to room when clciked on
+- [ ] add onclick event to online users li elemts
 - [ ] send messages to cleint own room
 - [x] clear database on disconect
 - [x] remove name form connected users for client
