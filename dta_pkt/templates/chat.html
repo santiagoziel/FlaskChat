@@ -10,7 +10,7 @@
       <h2>En linea</h2>
       <ul id = "connected_users">
         {% for usuario in users %}
-          <li>{{usuario.username}}</li>
+          <li id="{{usuario.username}}">{{usuario.username}}</li>
         {% endfor %}
       </ul>
     </div>

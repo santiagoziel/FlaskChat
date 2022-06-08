@@ -5,6 +5,7 @@ socket.on('new active user', function(message){
   var ul = document.getElementById("connected_users");
   var li = document.createElement("li");
   li.appendChild(document.createTextNode(message));
+  li.setAttribute("id", message);
   ul.appendChild(li);
 });
 
