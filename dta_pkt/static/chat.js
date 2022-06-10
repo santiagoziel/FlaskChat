@@ -1,13 +1,27 @@
 var socket = io('http://127.0.0.1:5000');
 //when new user conects it updates list of abailable users
 socket.on('new active user', function(message){
-  // TODO: make this update abailable user list
   var ul = document.getElementById("connected_users");
   var li = document.createElement("li");
   li.appendChild(document.createTextNode(message));
+  li.setAttribute("class", "onlineUser")
   li.setAttribute("id", message);
+  li.addEventListener("dblclick", event => {
+    ClickUser(li)
+  });
   ul.appendChild(li);
 });
+
+//when user doble clicks on onlineUserns namee it changes how it looks and lets server know
+function ClickUser(element) {
+  if (!element.classList.contains("talkingTo")){
+    element.classList.add("talkingTo");
+    socket.emit('whants to talk to', element.id);
+  }
+  else {
+    element.classList.remove("talkingTo");
+  }
+}
 
 //when client types message it sends it to the server
 function SendToServer() {
@@ -36,3 +50,22 @@ socket.on('remove active user', function(data){
   var li = document.getElementById(data);
   li.remove()
 });
+
+//lets cleint know another usser whants to talk with them
+socket.on('whants to talk', function(room){
+  //lets the server know another user whants to talk to me
+  socket.emit('talk to me', room);
+})
+
+socket.on('conection stablished', function(data){
+  console.log(data['message']);
+  var ul = document.getElementById("chatView");
+  var li = document.createElement("li");
+  li.appendChild(document.createTextNode(data));
+  ul.appendChild(li);
+})
+for(element of document.querySelectorAll(".onlineUser")){
+  element.addEventListener("dblclick", event => {
+    ClickUser(element)
+  });
+}

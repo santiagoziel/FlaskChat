@@ -23,3 +23,8 @@
   display: table;
   clear: both;
 }
+
+.talkingTo {
+  border-style: solid;
+  border-color: Green;
+}

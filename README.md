@@ -13,3 +13,4 @@ Simple chat application to work as a proof of concept for socketIO
 - [x] clear database on disconect
 - [x] remove name form connected users for client
 - [ ] display differentiate from diff users messages
+- [ ] fix user system to have unique usernames

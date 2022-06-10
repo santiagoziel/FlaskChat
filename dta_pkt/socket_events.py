@@ -25,3 +25,17 @@ def disconnect_details(data):
     current_user.room = ""
     db.session.commit()
     emit('remove active user', current_user.username, broadcast=True)
+
+@socketio.on('whants to talk to')
+def stablish_room_conection(talkto_name):
+    talkto = User.query.filter(User.username == talkto_name).first()
+    #join this socket to talkto_room
+    join_room(talkto.room)
+    #send event to talkto_room to join current_user_room
+    emit('whants to talk',current_user.room, to=talkto.room)
+
+@socketio.on('talk to me')
+def talk_back(room):
+    join_room(room)
+    talkto = User.query.filter(User.room == room).first()
+    emit('conection stablished', f"{talkto.username} is now talking with {current_user.username}")
