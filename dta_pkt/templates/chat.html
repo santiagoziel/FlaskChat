@@ -2,8 +2,9 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta id="my_username" data-name="{{user.username}}">
     <link rel="stylesheet" href="/static/chat.css"/>
-    <title>chat app de {{user.username}}</title>
+    <title id = "{{user.username}}">chat app de {{user.username}}</title>
   </head>
   <body onbeforeunload="return socket.emit('client_disconnecting', 'bye')">
     <div class="column left" style="background-color:#aaa;">
