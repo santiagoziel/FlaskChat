@@ -28,15 +28,19 @@ In order to talk to both of them.
 - pip3 or higher
 - pipenv installed
   - to install run:
-          pip install pipenv
+  ```
+  pip install pipenv
+  ```
   [pipenv info](https://pypi.org/project/pipenv/)
 
 ## How to Use
-        git clone https://github.com/santiagoziel/FlaskChat.git
-        cd FlaskChat
-        pipenv shell
-        pipenv install
-        python3 run.py
+  ```
+  git clone https://github.com/santiagoziel/FlaskChat.git
+  cd FlaskChat
+  pipenv shell
+  pipenv install
+  python3 run.py
+  ```
 **Navigate to** http://127.0.0.1:5000 and go nuts.
 ### TODO
 - [ ] improve general look
