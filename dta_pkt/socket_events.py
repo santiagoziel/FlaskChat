@@ -34,8 +34,20 @@ def stablish_room_conection(talkto_name):
     #send event to talkto_room to join current_user_room
     emit('whants to talk',current_user.room, to=talkto.room)
 
+@socketio.on('whants to stop talking to')
+def remove_room_conectino(talkto_name):
+    talkto = User.query.filter(User.username == talkto_name).first()
+    leave_room(talkto.room)
+    emit('stop talk',current_user.room, to=talkto.room)
+
 @socketio.on('talk to me')
 def talk_back(room):
     join_room(room)
     talkto = User.query.filter(User.room == room).first()
-    emit('conection stablished', f"{talkto.username} is now talking with {current_user.username}")
+    emit('conection updated', f"{talkto.username} is now talking with {current_user.username}")
+
+@socketio.on('stop talking to me')
+def stop_talk(room):
+    leave_room(room)
+    talkto = User.query.filter(User.room == room).first()
+    emit('conection updated', f"{talkto.username} stoped talking with {current_user.username}")

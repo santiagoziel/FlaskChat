@@ -24,6 +24,7 @@ function ClickUser(element) {
   }
   else {
     element.classList.remove("talkingTo");
+    socket.emit('whants to stop talking to', element.id);
   }
 }
 
@@ -61,13 +62,18 @@ socket.on('whants to talk', function(room){
   socket.emit('talk to me', room);
 })
 
-socket.on('conection stablished', function(data){
-  console.log(data['message']);
+socket.on('stop talk', function(room){
+  socket.emit('stop talking to me', room);
+})
+
+socket.on('conection updated', function(data){
+  //console.log(data['message']);
   var ul = document.getElementById("chatView");
   var li = document.createElement("li");
   li.appendChild(document.createTextNode(data));
   ul.appendChild(li);
 })
+
 for(element of document.querySelectorAll(".onlineUser")){
   element.addEventListener("dblclick", event => {
     ClickUser(element)
