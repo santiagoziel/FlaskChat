@@ -1,4 +1,4 @@
-var socket = io('http://127.0.0.1:5000');
+var socket = io();
 //when new user conects it updates list of abailable users
 socket.on('new active user', function(message){
   if (document.getElementsByTagName("title")[0].id == message){
